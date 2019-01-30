@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ToDoListExtension {
+namespace ToDoLibrary {
   public class ToDoList {
 
   }
