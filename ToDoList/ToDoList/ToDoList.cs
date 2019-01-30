@@ -6,8 +6,8 @@ namespace ToDoLibrary {
   public class ToDoList {
     private readonly TaskListContext _context;
 
-    public ToDoList (TaskListContext context) {
-      _context = context;
+    public ToDoList () {
+      _context = new TaskListContext();
     }
 
     public List<Tasks> GetTasks() {
@@ -52,14 +52,15 @@ namespace ToDoLibrary {
       if (taskFromDb == null) return "Nie można znaleźć takiego zadania";
 
       taskFromDb.Name = task.Name;
+      taskFromDb.Check = false;
       _context.Tasks.Update(taskFromDb);
       _context.SaveChanges();
 
       return "Zmieniono nazwę zadania";
     }
 
-    public string DeleteTask(int idTask) {
-      var taskToRemove = _context.Tasks.Find(idTask);
+    public string DeleteTask(Tasks task) {
+      var taskToRemove = _context.Tasks.Find(task.Id);
       if (taskToRemove == null) return "Nie można znaleźć takiego zadania";
 
       _context.Tasks.Remove(taskToRemove);
