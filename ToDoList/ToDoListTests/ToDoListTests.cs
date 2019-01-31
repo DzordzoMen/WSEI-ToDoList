@@ -1,112 +1,116 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
-using ToDoLibrary;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ToDoListLibrary;
 
 namespace ToDoListTests {
+  [TestClass]
   public class ToDoListTests {
     public ToDoList _toDoList = new ToDoList();
 
-    [Fact]
+
+    [TestMethod]
     public void GetTasks_None_ShouldReturnListWithTasks() {
       var result = _toDoList.GetTasks();
 
       var checkIFList = result is List<Tasks>;
 
-      Assert.True(checkIFList);
+      Assert.IsTrue(checkIFList);
     }
 
-    [Fact]
+    [TestMethod]
     public void GetNotFinishedTasks_None_ShouldReturnListWithTasks() {
       var result = _toDoList.GetNotFinishedTasks();
 
       var checkIfList = result is List<Tasks>;
 
-      Assert.True(checkIfList);
+      Assert.IsTrue(checkIfList);
     }
-
-    [Fact]
+    
+    [TestMethod]
     public void ChangeStatus_WrongTask_ShouldReturnStringWithMessage() {
       var wrongTask = new Tasks();
       wrongTask.Id = 9999;
       wrongTask.Name = "Wrong Task";
-      wrongTask.Check = false;
+      wrongTask.Check = 0;
 
       var result = _toDoList.ChangeStatus(wrongTask);
 
-      Assert.Equal("Nie mo¿na znaleŸæ takiego zadania", result);
+      Assert.AreEqual("Nie moÅ¼na znaleÅºÄ‡ takiego zadania", result);
     }
 
-    [Fact]
+    [TestMethod]
     public void ChangeStatus_CorrectTask_ShouldReturnStringWithMessage() {
       var correctTask = new Tasks();
       correctTask.Id = 3;
       correctTask.Name = "Task do Testowania";
-      correctTask.Check = false;
+      correctTask.Check = 0;
 
       var result = _toDoList.ChangeStatus(correctTask);
 
-      Assert.Equal("Zmieniono status zadania", result);
+      Assert.AreEqual("Zmieniono status zadania", result);
     }
-
-    [Fact]
+    
+    [TestMethod]
     public void AddTask_NewTask_ShouldReturnStringWithMessage() {
-      var newTask = new Tasks();
-      newTask.Name = "ZnaleŸæ kogoœ kto zap³aci za dodanie do projektu";
+      var newTask = new Tasks {
+        Name = "ZnaleÅºÄ‡ kogoÅ› kto zapÅ‚aci za dodanie do projektu",
+        Check = 1
+      };
 
       var result = _toDoList.AddTask(newTask);
 
-      Assert.Equal("Dodano nowe zadanie.", result);
+      Assert.AreEqual("Dodano nowe zadanie.", result);
     }
-
-    [Fact]
+    
+    [TestMethod]
     public void EditTask_WrongTask_ShouldReturnStringWithMessage() {
       var wrongTask = new Tasks();
       wrongTask.Id = 9999;
       wrongTask.Name = "Wrong Task";
-      wrongTask.Check = false;
+      wrongTask.Check = 0;
 
       var result = _toDoList.EditTask(wrongTask);
 
-      Assert.Equal("Nie mo¿na znaleŸæ takiego zadania", result);
+      Assert.AreEqual("Nie moÅ¼na znaleÅºÄ‡ takiego zadania", result);
     }
 
-    [Fact]
+    [TestMethod]
     public void EditTask_CorrectTask_ShouldReturnStringWithMessage() {
       var correctTask = new Tasks();
       correctTask.Id = 3;
       correctTask.Name = "Task do Testowania";
-      correctTask.Check = false;
+      correctTask.Check = 0;
 
       var result = _toDoList.EditTask(correctTask);
 
-      Assert.Equal("Zmieniono nazwê zadania", result);
+      Assert.AreEqual("Zmieniono nazwÄ™ zadania", result);
     }
-
-    [Fact]
+    
+    [TestMethod]
     public void DeleteTask_WrongTask_ShouldReturnStringWithMessage() {
       var wrongTask = new Tasks();
       wrongTask.Id = 9999;
       wrongTask.Name = "Wrong Task";
-      wrongTask.Check = false;
+      wrongTask.Check = 0;
 
       var result = _toDoList.DeleteTask(wrongTask);
 
-      Assert.Equal("Nie mo¿na znaleŸæ takiego zadania", result);
+      Assert.AreEqual("Nie moÅ¼na znaleÅºÄ‡ takiego zadania", result);
     }
 
-    [Fact]
+    [TestMethod]
     public void DeleteTask_CorrectTask_ShouldReturnStringWithMessage() {
       var correctTask = new Tasks();
       correctTask.Id = 8888888;
-      correctTask.Name = "Task do Usuniêcia";
-      correctTask.Check = false;
+      correctTask.Name = "Task do UsuniÄ™cia";
+      correctTask.Check = 0;
 
       var result = _toDoList.DeleteTask(correctTask);
 
       _toDoList.AddTask(correctTask);
 
-      Assert.Equal("Usuniêto zadanie", result);
+      Assert.AreEqual("UsuniÄ™to zadanie", result);
     }
   }
 }
