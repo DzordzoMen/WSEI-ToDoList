@@ -102,7 +102,7 @@ namespace ToDoListTests {
     [TestMethod]
     public void DeleteTask_CorrectTask_ShouldReturnStringWithMessage() {
       var correctTask = new Tasks();
-      correctTask.Id = 8888888;
+      correctTask.Id = 2222;
       correctTask.Name = "Task do Usunięcia";
       correctTask.Check = 0;
 
