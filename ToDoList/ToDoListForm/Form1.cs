@@ -22,17 +22,20 @@ namespace ToDoListForm {
       GetRecords();
     }
 
+    // Add Button
     private void button2_Click(object sender, EventArgs e) {
       var task = new Tasks {
         Name = textBox1.Text,
         Check = 0
       };
 
-      _toDoList.AddTask(task);
+      var message = _toDoList.AddTask(task);
       textBox1.Clear();
       GetRecords();
+      MessageBox.Show(message);
     }
 
+    // Edit Button
     private void button4_Click(object sender, EventArgs e) {
       int index = dataGridView1.CurrentRow.Index;
 
@@ -52,10 +55,12 @@ namespace ToDoListForm {
         Check = check
       };
 
-      _toDoList.EditTask(task);
+      var message = _toDoList.EditTask(task);
       GetRecords();
+      MessageBox.Show(message);
     }
 
+    // Delete button
     private void button3_Click(object sender, EventArgs e) {
       int index = dataGridView1.CurrentRow.Index;
 
@@ -75,10 +80,12 @@ namespace ToDoListForm {
         Check = check
       };
 
-      _toDoList.DeleteTask(task);
+      var message = _toDoList.DeleteTask(task);
       GetRecords();
+      MessageBox.Show(message);
     }
 
+    // Change Status Button
     private void button1_Click(object sender, EventArgs e) {
             int index = dataGridView1.CurrentRow.Index;
 
@@ -98,8 +105,9 @@ namespace ToDoListForm {
         Check = check
       };
 
-      _toDoList.ChangeStatus(task);
+      var message = _toDoList.ChangeStatus(task);
       GetRecords();
+      MessageBox.Show(message);
     }
   }
 }
