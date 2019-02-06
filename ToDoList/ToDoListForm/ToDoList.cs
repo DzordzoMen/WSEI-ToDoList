@@ -3,10 +3,10 @@ using System.Windows.Forms;
 using ToDoListLibrary;
 
 namespace ToDoListForm {
-  public partial class Form1 : Form {
-    ToDoList _toDoList = new ToDoList();
+  public partial class ToDoList : Form {
+    ToDoListLibrary.ToDoList _toDoList = new ToDoListLibrary.ToDoList();
 
-    public Form1() {
+    public ToDoList() {
       InitializeComponent();
       GetRecords();
     }

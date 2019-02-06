@@ -1,5 +1,5 @@
 ﻿namespace ToDoListForm {
-  partial class Form1 {
+  partial class ToDoList {
     /// <summary>
     /// Required designer variable.
     /// </summary>
