@@ -29,17 +29,18 @@
       this.button4 = new System.Windows.Forms.Button();
       this.textBox1 = new System.Windows.Forms.TextBox();
       this.button1 = new System.Windows.Forms.Button();
+      this.checkBox1 = new System.Windows.Forms.CheckBox();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.SuspendLayout();
       // 
       // dataGridView1
       // 
       this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.dataGridView1.Location = new System.Drawing.Point(12, 44);
+      this.dataGridView1.Location = new System.Drawing.Point(12, 64);
       this.dataGridView1.MultiSelect = false;
       this.dataGridView1.Name = "dataGridView1";
       this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-      this.dataGridView1.Size = new System.Drawing.Size(351, 361);
+      this.dataGridView1.Size = new System.Drawing.Size(351, 341);
       this.dataGridView1.TabIndex = 0;
       this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
       // 
@@ -90,20 +91,34 @@
       this.button1.UseVisualStyleBackColor = true;
       this.button1.Click += new System.EventHandler(this.button1_Click);
       // 
-      // Form1
+      // checkBox1
+      // 
+      this.checkBox1.AutoSize = true;
+      this.checkBox1.Checked = true;
+      this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.checkBox1.Location = new System.Drawing.Point(13, 41);
+      this.checkBox1.Name = "checkBox1";
+      this.checkBox1.Size = new System.Drawing.Size(162, 17);
+      this.checkBox1.TabIndex = 7;
+      this.checkBox1.Text = "Pokazać wszystkie zadania?";
+      this.checkBox1.UseVisualStyleBackColor = true;
+      this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+      // 
+      // ToDoList
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(375, 438);
+      this.Controls.Add(this.checkBox1);
       this.Controls.Add(this.button1);
       this.Controls.Add(this.textBox1);
       this.Controls.Add(this.button4);
       this.Controls.Add(this.button3);
       this.Controls.Add(this.button2);
       this.Controls.Add(this.dataGridView1);
-      this.Name = "Form1";
+      this.Name = "ToDoList";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-      this.Text = "UglyToDoList";
+      this.Text = "ToDoList";
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
@@ -118,6 +133,7 @@
     private System.Windows.Forms.Button button4;
     private System.Windows.Forms.TextBox textBox1;
     private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.CheckBox checkBox1;
   }
 }
 

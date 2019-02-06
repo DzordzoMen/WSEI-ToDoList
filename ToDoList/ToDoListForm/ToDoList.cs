@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using ToDoListLibrary;
 
@@ -6,16 +7,23 @@ namespace ToDoListForm {
   public partial class ToDoList : Form {
     ToDoListLibrary.ToDoList _toDoList = new ToDoListLibrary.ToDoList();
 
+    private bool _showAll = true;
+
     public ToDoList() {
       InitializeComponent();
       GetRecords();
     }
 
     public void GetRecords() {
-      var records = _toDoList.GetTasks();
+      List<Tasks> records;
+
+      if (_showAll) {
+        records = _toDoList.GetTasks();
+      } else {
+        records = _toDoList.GetNotFinishedTasks();
+      }
 
       dataGridView1.DataSource = records;
-      //dataGridView1.DataMember = "tasks";
     }
 
     private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
@@ -108,6 +116,12 @@ namespace ToDoListForm {
       var message = _toDoList.ChangeStatus(task);
       GetRecords();
       MessageBox.Show(message);
+    }
+
+    private void checkBox1_CheckedChanged(object sender, EventArgs e) {
+      _showAll = !_showAll;
+
+      GetRecords();
     }
   }
 }
