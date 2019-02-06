@@ -12,10 +12,11 @@ namespace ToDoListLibrary {
   using System.ComponentModel.DataAnnotations.Schema;
   using System.Data.Entity;
   using System.Data.Entity.Infrastructure;
-    
+  using System.IO;
+
   public partial class toDoListConnectionString : DbContext {
     public toDoListConnectionString()
-      : base("name=toDoListConnectionString") { }
+      : base(ConnectionStringToDatabase()) { }
     
     protected override void OnModelCreating(DbModelBuilder modelBuilder) {
 
@@ -28,6 +29,15 @@ namespace ToDoListLibrary {
         .HasColumnType("bigint");
 
       throw new UnintentionalCodeFirstException();
+    }
+
+    private static string ConnectionStringToDatabase() {
+      string projectDir = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+      string relativePath = Path.Combine(projectDir, @"ToDoListLibrary\Database\ToDoListDatabase.db");
+      string dataSource = string.Format("data source={0}", relativePath);
+      string connectionString = string.Format("metadata=res://*/Model.csdl|res://*/Model.ssdl|res://*/Model.msl;provider=System.Data.SQLite.EF6;provider connection string='{0}'", dataSource);
+
+      return connectionString;
     }
     
     public virtual DbSet<Tasks> Tasks { get; set; }
