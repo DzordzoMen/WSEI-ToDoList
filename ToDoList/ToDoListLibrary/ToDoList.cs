@@ -8,11 +8,22 @@ namespace ToDoListLibrary
 {
 
   public class ToDoList {
+
+    #region Properties
+
     private readonly toDoListConnectionString _context;
+
+    #endregion
+
+    #region Constructor
 
     public ToDoList () {
       _context = new toDoListConnectionString();
     }
+
+    #endregion
+
+    #region Public methods
 
     public List<Tasks> GetTasks() {
       var result = _context.Tasks
@@ -79,6 +90,8 @@ namespace ToDoListLibrary
       _context.SaveChanges();
       return "Usunięto zadanie";
     }
+
+    #endregion
 
     #region Privates
     private long ChangeBool(long check) {

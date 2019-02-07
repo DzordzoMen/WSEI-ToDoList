@@ -15,9 +15,14 @@ namespace ToDoListLibrary {
   using System.IO;
 
   public partial class toDoListConnectionString : DbContext {
+
+    #region Constructor
+
     public toDoListConnectionString()
       : base(ConnectionStringToDatabase()) { }
-    
+
+    #endregion
+
     protected override void OnModelCreating(DbModelBuilder modelBuilder) {
 
       modelBuilder.Entity<Tasks>()
@@ -31,6 +36,8 @@ namespace ToDoListLibrary {
       throw new UnintentionalCodeFirstException();
     }
 
+    #region Static method
+
     private static string ConnectionStringToDatabase() {
       string projectDir = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
       string relativePath = Path.Combine(projectDir, @"ToDoListLibrary\Database\ToDoListDatabase.db");
@@ -39,7 +46,13 @@ namespace ToDoListLibrary {
 
       return connectionString;
     }
-    
+
+    #endregion
+
+    #region Database models
+
     public virtual DbSet<Tasks> Tasks { get; set; }
+
+    #endregion
   }
 }

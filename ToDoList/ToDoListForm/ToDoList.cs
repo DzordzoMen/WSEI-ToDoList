@@ -5,14 +5,25 @@ using ToDoListLibrary;
 
 namespace ToDoListForm {
   public partial class ToDoList : Form {
+
+    #region Properties
+
     ToDoListLibrary.ToDoList _toDoList = new ToDoListLibrary.ToDoList();
 
     private bool _showAll = true;
+
+    #endregion
+
+    #region Constructor
 
     public ToDoList() {
       InitializeComponent();
       GetRecords();
     }
+
+    #endregion
+
+    #region Grid Methods
 
     public void GetRecords() {
       List<Tasks> records;
@@ -29,6 +40,10 @@ namespace ToDoListForm {
     private void DataGridOnStart(object sender, DataGridViewCellEventArgs e) {
       GetRecords();
     }
+
+    #endregion
+
+    #region Button and CheckBox methods
 
     // Add Button
     private void AddTask(object sender, EventArgs e) {
@@ -70,7 +85,15 @@ namespace ToDoListForm {
       MessageBox.Show(message);
     }
 
+    private void DisplayChange(object sender, EventArgs e) {
+      _showAll = !_showAll;
 
+      GetRecords();
+    }
+
+    #endregion
+
+    #region ReturnSelectedTask method
 
     private Tasks ReturnSelectedTask() {
       int index = DataGrid.CurrentRow.Index;
@@ -91,10 +114,6 @@ namespace ToDoListForm {
       return task;
     }
 
-    private void DisplayChange(object sender, EventArgs e) {
-      _showAll = !_showAll;
-
-      GetRecords();
-    }
+    #endregion
   }
 }
