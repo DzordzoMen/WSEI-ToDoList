@@ -45,23 +45,7 @@ namespace ToDoListForm {
 
     // Edit Button
     private void EditTask(object sender, EventArgs e) {
-      int index = DataGrid.CurrentRow.Index;
-
-      var taskId = DataGrid[0, index].Value.ToString();
-      var taskName = DataGrid[1, index].Value.ToString();
-      var taskCheck = DataGrid[2, index].Value.ToString();
-
-      long id;
-      long check;
-
-      Int64.TryParse(taskId, out id);
-      Int64.TryParse(taskCheck, out check);
-      
-      var task = new Tasks {
-        Id = id,
-        Name = taskName,
-        Check = check
-      };
+      Tasks task = ReturnSelectedTask();
 
       var message = _toDoList.EditTask(task);
       GetRecords();
@@ -70,23 +54,7 @@ namespace ToDoListForm {
 
     // Delete button
     private void DeleteTask(object sender, EventArgs e) {
-      int index = DataGrid.CurrentRow.Index;
-
-      var taskId = DataGrid[0, index].Value.ToString();
-      var taskName = DataGrid[1, index].Value.ToString();
-      var taskCheck = DataGrid[2, index].Value.ToString();
-
-      long id;
-      long check;
-
-      Int64.TryParse(taskId, out id);
-      Int64.TryParse(taskCheck, out check);
-      
-      var task = new Tasks {
-        Id = id,
-        Name = taskName,
-        Check = check
-      };
+      Tasks task = ReturnSelectedTask();
 
       var message = _toDoList.DeleteTask(task);
       GetRecords();
@@ -95,27 +63,32 @@ namespace ToDoListForm {
 
     // Change Status Button
     private void ChangeTaskStatus(object sender, EventArgs e) {
-            int index = DataGrid.CurrentRow.Index;
+      Tasks task = ReturnSelectedTask();
+
+      var message = _toDoList.ChangeStatus(task);
+      GetRecords();
+      MessageBox.Show(message);
+    }
+
+
+
+    private Tasks ReturnSelectedTask() {
+      int index = DataGrid.CurrentRow.Index;
 
       var taskId = DataGrid[0, index].Value.ToString();
       var taskName = DataGrid[1, index].Value.ToString();
       var taskCheck = DataGrid[2, index].Value.ToString();
 
-      long id;
-      long check;
 
-      Int64.TryParse(taskId, out id);
-      Int64.TryParse(taskCheck, out check);
-      
+      Int64.TryParse(taskId, out long id);
+      Int64.TryParse(taskCheck, out long check);
+
       var task = new Tasks {
         Id = id,
         Name = taskName,
         Check = check
       };
-
-      var message = _toDoList.ChangeStatus(task);
-      GetRecords();
-      MessageBox.Show(message);
+      return task;
     }
 
     private void DisplayChange(object sender, EventArgs e) {
