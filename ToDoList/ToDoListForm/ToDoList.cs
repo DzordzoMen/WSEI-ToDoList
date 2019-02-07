@@ -23,33 +23,33 @@ namespace ToDoListForm {
         records = _toDoList.GetNotFinishedTasks();
       }
 
-      dataGridView1.DataSource = records;
+      DataGrid.DataSource = records;
     }
 
-    private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+    private void DataGridOnStart(object sender, DataGridViewCellEventArgs e) {
       GetRecords();
     }
 
     // Add Button
-    private void button2_Click(object sender, EventArgs e) {
+    private void AddTask(object sender, EventArgs e) {
       var task = new Tasks {
-        Name = textBox1.Text,
+        Name = NewTaskField.Text,
         Check = 0
       };
 
       var message = _toDoList.AddTask(task);
-      textBox1.Clear();
+      NewTaskField.Clear();
       GetRecords();
       MessageBox.Show(message);
     }
 
     // Edit Button
-    private void button4_Click(object sender, EventArgs e) {
-      int index = dataGridView1.CurrentRow.Index;
+    private void EditTask(object sender, EventArgs e) {
+      int index = DataGrid.CurrentRow.Index;
 
-      var taskId = dataGridView1[0, index].Value.ToString();
-      var taskName = dataGridView1[1, index].Value.ToString();
-      var taskCheck = dataGridView1[2, index].Value.ToString();
+      var taskId = DataGrid[0, index].Value.ToString();
+      var taskName = DataGrid[1, index].Value.ToString();
+      var taskCheck = DataGrid[2, index].Value.ToString();
 
       long id;
       long check;
@@ -69,12 +69,12 @@ namespace ToDoListForm {
     }
 
     // Delete button
-    private void button3_Click(object sender, EventArgs e) {
-      int index = dataGridView1.CurrentRow.Index;
+    private void DeleteTask(object sender, EventArgs e) {
+      int index = DataGrid.CurrentRow.Index;
 
-      var taskId = dataGridView1[0, index].Value.ToString();
-      var taskName = dataGridView1[1, index].Value.ToString();
-      var taskCheck = dataGridView1[2, index].Value.ToString();
+      var taskId = DataGrid[0, index].Value.ToString();
+      var taskName = DataGrid[1, index].Value.ToString();
+      var taskCheck = DataGrid[2, index].Value.ToString();
 
       long id;
       long check;
@@ -94,12 +94,12 @@ namespace ToDoListForm {
     }
 
     // Change Status Button
-    private void button1_Click(object sender, EventArgs e) {
-            int index = dataGridView1.CurrentRow.Index;
+    private void ChangeTaskStatus(object sender, EventArgs e) {
+            int index = DataGrid.CurrentRow.Index;
 
-      var taskId = dataGridView1[0, index].Value.ToString();
-      var taskName = dataGridView1[1, index].Value.ToString();
-      var taskCheck = dataGridView1[2, index].Value.ToString();
+      var taskId = DataGrid[0, index].Value.ToString();
+      var taskName = DataGrid[1, index].Value.ToString();
+      var taskCheck = DataGrid[2, index].Value.ToString();
 
       long id;
       long check;
@@ -118,7 +118,7 @@ namespace ToDoListForm {
       MessageBox.Show(message);
     }
 
-    private void checkBox1_CheckedChanged(object sender, EventArgs e) {
+    private void DisplayChange(object sender, EventArgs e) {
       _showAll = !_showAll;
 
       GetRecords();
