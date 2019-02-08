@@ -42,8 +42,8 @@ namespace ToDoListTests {
     [TestMethod]
     public void ChangeStatus_CorrectTask_ShouldReturnStringWithMessage() {
       var correctTask = new Tasks();
-      correctTask.Id = 3;
-      correctTask.Name = "Task do Testowania";
+      correctTask.Id = 7;
+      correctTask.Name = "Odpocząć";
       correctTask.Check = 0;
 
       var result = _toDoList.ChangeStatus(correctTask);
@@ -54,7 +54,7 @@ namespace ToDoListTests {
     [TestMethod]
     public void AddTask_NewTask_ShouldReturnStringWithMessage() {
       var newTask = new Tasks {
-        Name = "Znaleźć kogoś kto zapłaci za dodanie do projektu",
+        Name = "Dodać test sprawdzający dodawanie zadań",
         Check = 1
       };
 
@@ -102,7 +102,7 @@ namespace ToDoListTests {
     [TestMethod]
     public void DeleteTask_CorrectTask_ShouldReturnStringWithMessage() {
       var correctTask = new Tasks();
-      correctTask.Id = 2222;
+      correctTask.Id = 9;
       correctTask.Name = "Task do Usunięcia";
       correctTask.Check = 0;
 
