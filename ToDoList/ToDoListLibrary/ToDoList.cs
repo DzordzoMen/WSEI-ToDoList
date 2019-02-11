@@ -44,7 +44,7 @@ namespace ToDoListLibrary
     }
     
     public string ChangeStatus(Tasks task) {
-      // poprawić metoda ktora sprawdza czy to jest wieksze od 0
+
       var taskFromDb = _context.Tasks.Find(task.Id);
       if (taskFromDb == null) return "Nie można znaleźć takiego zadania";
 
