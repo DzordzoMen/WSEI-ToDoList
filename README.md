@@ -1,6 +1,9 @@
 # Dokumentacja WseiToDoList
 Aplikacja okienkowa do przeglądania zadań, stworzona przez Macieja Romanowskiego na potrzeby projektu semestralnego do zaliczenai przedmiotu "Programowanie Obiektowe C#" na uczelni [WSEI](https://www.wsei.edu.pl/).
 
+# Instalacja
+Żeby zainstalować aplikację trzeba wejść w folder `Instalator` i uruchomić plik `ToDoListForm.application`, po chiwli ukaże się okno instalacji.
+
 # Użyte pakiety zewnętrzne
 
   - Entity Framework 6
